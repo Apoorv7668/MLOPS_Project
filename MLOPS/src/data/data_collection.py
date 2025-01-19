@@ -37,8 +37,8 @@ def save_data(df: pd.DataFrame, filepath: str) -> None:
 
 def main():
     # data_filepath = r"C:/Users/Dell/Downloads/archive (1)/water_potability.csv"
-    # data_filepath = "C:/Users/Dell/OneDrive/Pictures/water_potability.csv"
-    data_filepath = "https://raw.githubusercontent.com/Apoorv7668/MLOPS_Project/6d72ff09e4e3df86c74017be1d2b6c3e7e50476d/water_potability.csv"
+    data_filepath = "C:/Users/Dell/OneDrive/Pictures/water_potability.csv"
+    # data_filepath = "https://raw.githubusercontent.com/Apoorv7668/MLOPS_Project/6d72ff09e4e3df86c74017be1d2b6c3e7e50476d/water_potability.csv"
     params_filepath = "params.yaml"
 
     print(f"Data file exists: {os.path.exists(data_filepath)}")

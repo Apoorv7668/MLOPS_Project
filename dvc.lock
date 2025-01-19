@@ -5,8 +5,8 @@ stages:
     deps:
     - path: MLOPS/src/data/data_collection.py
       hash: md5
-      md5: d935da9bf9807bcfb9bfbb1ed5f64bc7
-      size: 2143
+      md5: 930336bed7e7e6d049e6cdff5a7b63a5
+      size: 2289
     params:
       params.yaml:
         data_collection.test_size: 0.2
@@ -63,8 +63,8 @@ stages:
       size: 73693828
     - path: MLOPS\src\models\model_eval.py
       hash: md5
-      md5: b5a8dc909d21c867fc7f14d8a319b51a
-      size: 4973
+      md5: 3c7af9bdf15bbef47cf009c6aec1832d
+      size: 4967
     outs:
     - path: MLOPS/reports/metrics.json
       hash: md5
@@ -72,12 +72,12 @@ stages:
       size: 150
     - path: MLOPS/reports/run_info.json
       hash: md5
-      md5: 9a1181fe55739c3659d68a1994e81c3e
+      md5: cd6f3906474260f012eeae2d0bd62f68
       size: 87
   model_registration:
     cmd: python C:\Users\Dell\OneDrive\Desktop\MLOPS\MLOPS\src\models\model_reg.py
     deps:
     - path: MLOPS/reports/run_info.json
       hash: md5
-      md5: 9a1181fe55739c3659d68a1994e81c3e
+      md5: cd6f3906474260f012eeae2d0bd62f68
       size: 87
