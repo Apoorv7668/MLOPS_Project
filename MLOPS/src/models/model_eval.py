@@ -19,7 +19,7 @@ dagshub.init(repo_owner='Apoorv7668', repo_name='MLOPS_Project', mlflow=True)
 
 # Set the experiment name in MLflow
 
-mlflow.set_experiment("Final_model1 ")
+mlflow.set_experiment("CI_Try ")
 
 # Set the tracking URI for MLflow to log the experiment in DagsHub
 mlflow.set_tracking_uri("https://dagshub.com/Apoorv7668/MLOPS_Project.mlflow") 
