@@ -1,0 +1,83 @@
+schema: '2.0'
+stages:
+  data_collection:
+    cmd: python MLOPS/src/data/data_collection.py
+    deps:
+    - path: MLOPS/src/data/data_collection.py
+      hash: md5
+      md5: d935da9bf9807bcfb9bfbb1ed5f64bc7
+      size: 2143
+    params:
+      params.yaml:
+        data_collection.test_size: 0.2
+    outs:
+    - path: data/raw
+      hash: md5
+      md5: c0c2d65c14a603e91e029fda3c344a5c.dir
+      size: 522262
+      nfiles: 2
+  pre_preprocessing:
+    cmd: python MLOPS/src/data/data_prep.py
+    deps:
+    - path: MLOPS/src/data/data_prep.py
+      hash: md5
+      md5: 5381c5b99c37af255d2fab4a9b4630ea
+      size: 1862
+    - path: data/raw
+      hash: md5
+      md5: c0c2d65c14a603e91e029fda3c344a5c.dir
+      size: 522262
+      nfiles: 2
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: e34c84b2d0f2a75442271cd6c5779b7c.dir
+      size: 546895
+      nfiles: 2
+  model_building:
+    cmd: python MLOPS/src/models/model_building.py
+    deps:
+    - path: MLOPS/src/models/model_building.py
+      hash: md5
+      md5: 85a400ab189afcafa6feb81c26871926
+      size: 2031
+    - path: data/processed
+      hash: md5
+      md5: e34c84b2d0f2a75442271cd6c5779b7c.dir
+      size: 546895
+      nfiles: 2
+    params:
+      params.yaml:
+        model_building.n_estimators: 1000
+    outs:
+    - path: MLOPS/models/model.pkl
+      hash: md5
+      md5: a881bc047c15e17aef7d87d839dbf068
+      size: 73693828
+  model_eval:
+    cmd: python C:\Users\Dell\OneDrive\Desktop\MLOPS\MLOPS\src\models\model_eval.py
+    deps:
+    - path: MLOPS/models/model.pkl
+      hash: md5
+      md5: a881bc047c15e17aef7d87d839dbf068
+      size: 73693828
+    - path: MLOPS\src\models\model_eval.py
+      hash: md5
+      md5: b5a8dc909d21c867fc7f14d8a319b51a
+      size: 4973
+    outs:
+    - path: MLOPS/reports/metrics.json
+      hash: md5
+      md5: 290e851712029b7cfcf498a74aff7445
+      size: 150
+    - path: MLOPS/reports/run_info.json
+      hash: md5
+      md5: 9a1181fe55739c3659d68a1994e81c3e
+      size: 87
+  model_registration:
+    cmd: python C:\Users\Dell\OneDrive\Desktop\MLOPS\MLOPS\src\models\model_reg.py
+    deps:
+    - path: MLOPS/reports/run_info.json
+      hash: md5
+      md5: 9a1181fe55739c3659d68a1994e81c3e
+      size: 87

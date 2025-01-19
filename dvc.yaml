@@ -1,0 +1,44 @@
+stages:
+  data_collection:
+    cmd: python MLOPS/src/data/data_collection.py
+    deps:
+    - MLOPS/src/data/data_collection.py
+    params:
+    - data_collection.test_size
+    outs:
+    - data/raw
+  pre_preprocessing:
+    cmd: python MLOPS/src/data/data_prep.py
+    deps:
+    - data/raw
+    - MLOPS/src/data/data_prep.py
+    outs:
+    - data/processed
+  model_building:
+    cmd: python MLOPS/src/models/model_building.py
+    deps:
+    - data/processed
+    - MLOPS/src/models/model_building.py
+    params:
+    - model_building.n_estimators
+    outs:
+    - MLOPS/models/model.pkl
+  model_eval:
+    cmd: python C:\Users\Dell\OneDrive\Desktop\MLOPS\MLOPS\src\models\model_eval.py
+    deps:
+    - MLOPS/models/model.pkl
+    - C:\Users\Dell\OneDrive\Desktop\MLOPS\MLOPS\src\models\model_eval.py
+    metrics:
+    - MLOPS/reports/metrics.json
+    outs:
+    - MLOPS/reports/run_info.json 
+
+  
+  model_registration:
+    cmd: python C:\Users\Dell\OneDrive\Desktop\MLOPS\MLOPS\src\models\model_reg.py
+    deps:
+    - MLOPS/reports/run_info.json
+    # - src\models\model_reg.py
+    
+
+ 
